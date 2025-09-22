@@ -1,0 +1,469 @@
+,Nome,Mes,Categoria,Valor,Status
+0,Amanda dos Anjos Santos,Janeiro,Atleta,0.0,pago
+1,Ana Luiza de Moraes Guimarães,Janeiro,Atleta,0.0,pago
+2,Antonio Totti Gonçalves,Janeiro,Atleta,55.0,pago
+3,Bruna Aika Kiyono,Janeiro,Atleta,55.0,pago
+4,Calebe Fernandes de Oliveira,Janeiro,Atleta,55.0,pago
+5,Daniel Kawata Hara,Janeiro,Atleta,55.0,pago
+6,Edilson Pereira Nantes Junior,Janeiro,Atleta,55.0,pago
+7,Felipe Lira do Carmo Soares,Janeiro,Atleta,55.0,pago
+8,Gabriel Marcondes Trigolo,Janeiro,Atleta,55.0,pago
+9,Gabriel Pereira de Oliveira,Janeiro,Atleta,62.0,pago
+10,Gustavo Lopes Ribeiro,Janeiro,Atleta,0.0,pago
+11,Heloá Cristina Siqueira Da Silva,Janeiro,Atleta,0.0,pago
+12,Heloisa Prado de Oliveira,Janeiro,Atleta,0.0,pago
+13,Igor Silva Sena,Janeiro,Atleta,55.0,pago
+14,João Pedro Bento,Janeiro,Atleta,0.0,pago
+15,João Pedro Gomes de Almeida,Janeiro,Atleta,0.0,pago
+16,João Vitor de Oliveira Pinho,Janeiro,Atleta,0.0,pago
+17,João Vitor Nogueira Santos,Janeiro,Atleta,0.0,pago
+18,Júlia Pivello Vila Real,Janeiro,Atleta,55.0,pago
+19,Kaue Kato Nunes,Janeiro,Atleta,62.0,pago
+20,Letícia Esteves Rosa Pereira,Janeiro,Atleta,55.0,pago
+21,Luan Tarumoto de Macedo,Janeiro,Atleta,55.0,pago
+22,Luanda Shibata de Jesus Vital,Janeiro,Atleta,55.0,pago
+23,Lucas Bruck,Janeiro,Atleta,55.0,pago
+24,Luiz Henrique Almeida Pinto,Janeiro,Atleta,55.0,pago
+25,Marcelo Yuji Ruiz,Janeiro,Atleta,55.0,pago
+26,Maria Gabriely dos Santos,Janeiro,Atleta,55.0,pago
+27,Maria Julia Pedroso de Oliveira Souza,Janeiro,Atleta,55.0,pago
+28,Mateus Pazinatto,Janeiro,Atleta,0.0,pago
+29,Matheus Orlando Fenili,Janeiro,Atleta,0.0,pago
+30,Natalia Massari,Janeiro,Atleta,55.0,pago
+31,Nestor da Silva Santos Junior,Janeiro,Atleta,55.0,pago
+32,Rhafaela Graciano de Oliveira,Janeiro,Atleta,0.0,pago
+33,Yaron Büchler,Janeiro,Atleta,0.0,pago
+34,Amanda dos Anjos Santos,Fevereiro,Atleta,0.0,pago
+35,Ana Luiza de Moraes Guimarães,Fevereiro,Atleta,0.0,pago
+36,Antonio Totti Gonçalves,Fevereiro,Atleta,55.0,pago
+37,Bruna Aika Kiyono,Fevereiro,Atleta,55.0,pago
+38,Calebe Fernandes de Oliveira,Fevereiro,Atleta,0.0,pago
+39,Daniel Kawata Hara,Fevereiro,Atleta,0.0,pago
+40,Edilson Pereira Nantes Junior,Fevereiro,Atleta,55.0,pago
+41,Felipe Lira do Carmo Soares,Fevereiro,Atleta,55.0,pago
+42,Gabriel Marcondes Trigolo,Fevereiro,Atleta,55.0,pago
+43,Gabriel Pereira de Oliveira,Fevereiro,Atleta,62.0,pago
+44,Gustavo Lopes Ribeiro,Fevereiro,Atleta,0.0,pago
+45,Heloá Cristina Siqueira Da Silva,Fevereiro,Atleta,0.0,pago
+46,Heloisa Prado de Oliveira,Fevereiro,Atleta,0.0,pago
+47,Igor Silva Sena,Fevereiro,Atleta,55.0,pago
+48,João Pedro Bento,Fevereiro,Atleta,0.0,pago
+49,João Pedro Gomes de Almeida,Fevereiro,Atleta,0.0,pago
+50,João Vitor de Oliveira Pinho,Fevereiro,Atleta,0.0,pago
+51,João Vitor Nogueira Santos,Fevereiro,Atleta,0.0,pago
+52,Júlia Pivello Vila Real,Fevereiro,Atleta,55.0,pago
+53,Kaue Kato Nunes,Fevereiro,Atleta,62.0,pago
+54,Letícia Esteves Rosa Pereira,Fevereiro,Atleta,55.0,pago
+55,Luan Tarumoto de Macedo,Fevereiro,Atleta,55.0,pago
+56,Luanda Shibata de Jesus Vital,Fevereiro,Atleta,55.0,pago
+57,Lucas Bruck,Fevereiro,Atleta,55.0,pago
+58,Luiz Henrique Almeida Pinto,Fevereiro,Atleta,,pago
+59,Marcelo Yuji Ruiz,Fevereiro,Atleta,55.0,pago
+60,Maria Gabriely dos Santos,Fevereiro,Atleta,55.0,pago
+61,Maria Julia Pedroso de Oliveira Souza,Fevereiro,Atleta,0.0,pago
+62,Mateus Pazinatto,Fevereiro,Atleta,0.0,pago
+63,Matheus Orlando Fenili,Fevereiro,Atleta,0.0,pago
+64,Natalia Massari,Fevereiro,Atleta,,multa
+65,Nestor da Silva Santos Junior,Fevereiro,Atleta,55.0,pago
+66,Rhafaela Graciano de Oliveira,Fevereiro,Atleta,0.0,pago
+67,Yaron Büchler,Fevereiro,Atleta,0.0,pago
+68,Amanda dos Anjos Santos,Março,Atleta,0.0,pago
+69,Ana Luiza de Moraes Guimarães,Março,Atleta,0.0,pago
+70,Antonio Totti Gonçalves,Março,Atleta,55.0,pago
+71,Bruna Aika Kiyono,Março,Atleta,55.0,pago
+72,Calebe Fernandes de Oliveira,Março,Atleta,0.0,pago
+73,Daniel Kawata Hara,Março,Atleta,0.0,pago
+74,Edilson Pereira Nantes Junior,Março,Atleta,55.0,pago
+75,Felipe Lira do Carmo Soares,Março,Atleta,55.0,pago
+76,Gabriel Marcondes Trigolo,Março,Atleta,55.0,pago
+77,Gabriel Pereira de Oliveira,Março,Atleta,55.0,pago
+78,Gustavo Lopes Ribeiro,Março,Atleta,0.0,pago
+79,Heloá Cristina Siqueira Da Silva,Março,Atleta,0.0,pago
+80,Heloisa Prado de Oliveira,Março,Atleta,0.0,pago
+81,Igor Silva Sena,Março,Atleta,55.0,pago
+82,João Pedro Bento,Março,Atleta,0.0,pago
+83,João Pedro Gomes de Almeida,Março,Atleta,0.0,pago
+84,João Vitor de Oliveira Pinho,Março,Atleta,0.0,pago
+85,João Vitor Nogueira Santos,Março,Atleta,0.0,pago
+86,Júlia Pivello Vila Real,Março,Atleta,55.0,pago
+87,Kaue Kato Nunes,Março,Atleta,62.0,pago
+88,Letícia Esteves Rosa Pereira,Março,Atleta,55.0,pago
+89,Luan Tarumoto de Macedo,Março,Atleta,55.0,pago
+90,Luanda Shibata de Jesus Vital,Março,Atleta,55.0,pago
+91,Lucas Bruck,Março,Atleta,55.0,pago
+92,Luiz Henrique Almeida Pinto,Março,Atleta,,pago
+93,Marcelo Yuji Ruiz,Março,Atleta,55.0,pago
+94,Maria Gabriely dos Santos,Março,Atleta,55.0,pago
+95,Maria Julia Pedroso de Oliveira Souza,Março,Atleta,0.0,pago
+96,Mateus Pazinatto,Março,Atleta,0.0,pago
+97,Matheus Orlando Fenili,Março,Atleta,0.0,pago
+98,Natalia Massari,Março,Atleta,55.0,pago
+99,Nestor da Silva Santos Junior,Março,Atleta,55.0,pago
+100,Rhafaela Graciano de Oliveira,Março,Atleta,0.0,pago
+101,Yaron Büchler,Março,Atleta,0.0,pago
+102,Amanda dos Anjos Santos,Abril,Atleta,0.0,pago
+103,Ana Luiza de Moraes Guimarães,Abril,Atleta,0.0,pago
+104,Antonio Totti Gonçalves,Abril,Atleta,55.0,pago
+105,Bruna Aika Kiyono,Abril,Atleta,55.0,pago
+106,Calebe Fernandes de Oliveira,Abril,Atleta,0.0,pago
+107,Daniel Kawata Hara,Abril,Atleta,55.0,pago
+108,Edilson Pereira Nantes Junior,Abril,Atleta,55.0,pago
+109,Felipe Lira do Carmo Soares,Abril,Atleta,55.0,pago
+110,Gabriel Marcondes Trigolo,Abril,Atleta,55.0,pago
+111,Gabriel Pereira de Oliveira,Abril,Atleta,55.0,pago
+112,Gustavo Lopes Ribeiro,Abril,Atleta,0.0,pago
+113,Heloá Cristina Siqueira Da Silva,Abril,Atleta,0.0,pago
+114,Heloisa Prado de Oliveira,Abril,Atleta,0.0,pago
+115,Igor Silva Sena,Abril,Atleta,55.0,pago
+116,João Pedro Bento,Abril,Atleta,0.0,pago
+117,João Pedro Gomes de Almeida,Abril,Atleta,0.0,pago
+118,João Vitor de Oliveira Pinho,Abril,Atleta,0.0,pago
+119,João Vitor Nogueira Santos,Abril,Atleta,0.0,pago
+120,Júlia Pivello Vila Real,Abril,Atleta,55.0,pago
+121,Kaue Kato Nunes,Abril,Atleta,62.0,pago
+122,Letícia Esteves Rosa Pereira,Abril,Atleta,55.0,pago
+123,Luan Tarumoto de Macedo,Abril,Atleta,55.0,pago
+124,Luanda Shibata de Jesus Vital,Abril,Atleta,55.0,pago
+125,Lucas Bruck,Abril,Atleta,55.0,pago
+126,Luiz Henrique Almeida Pinto,Abril,Atleta,,pago
+127,Marcelo Yuji Ruiz,Abril,Atleta,55.0,pago
+128,Maria Gabriely dos Santos,Abril,Atleta,55.0,pago
+129,Maria Julia Pedroso de Oliveira Souza,Abril,Atleta,0.0,pago
+130,Mateus Pazinatto,Abril,Atleta,0.0,pago
+131,Matheus Orlando Fenili,Abril,Atleta,0.0,pago
+132,Natalia Massari,Abril,Atleta,55.0,pago
+133,Nestor da Silva Santos Junior,Abril,Atleta,55.0,pago
+134,Rhafaela Graciano de Oliveira,Abril,Atleta,0.0,pago
+135,Yaron Büchler,Abril,Atleta,0.0,pago
+136,Amanda dos Anjos Santos,Maio,Atleta,55.0,pago
+137,Ana Luiza de Moraes Guimarães,Maio,Atleta,0.0,pago
+138,Antonio Totti Gonçalves,Maio,Atleta,55.0,pago
+139,Bruna Aika Kiyono,Maio,Atleta,55.0,pago
+140,Calebe Fernandes de Oliveira,Maio,Atleta,55.0,pago
+141,Daniel Kawata Hara,Maio,Atleta,55.0,pago
+142,Edilson Pereira Nantes Junior,Maio,Atleta,55.0,pago
+143,Felipe Lira do Carmo Soares,Maio,Atleta,55.0,pago
+144,Gabriel Marcondes Trigolo,Maio,Atleta,55.0,pago
+145,Gabriel Pereira de Oliveira,Maio,Atleta,55.0,pago
+146,Gustavo Lopes Ribeiro,Maio,Atleta,55.0,pago
+147,Heloá Cristina Siqueira Da Silva,Maio,Atleta,55.0,pago
+148,Heloisa Prado de Oliveira,Maio,Atleta,55.0,pago
+149,Igor Silva Sena,Maio,Atleta,55.0,pago
+150,João Pedro Bento,Maio,Atleta,55.0,pago
+151,João Pedro Gomes de Almeida,Maio,Atleta,55.0,pago
+152,João Vitor de Oliveira Pinho,Maio,Atleta,55.0,pago
+153,João Vitor Nogueira Santos,Maio,Atleta,55.0,pago
+154,Júlia Pivello Vila Real,Maio,Atleta,55.0,pago
+155,Kaue Kato Nunes,Maio,Atleta,55.0,pago
+156,Letícia Esteves Rosa Pereira,Maio,Atleta,62.0,pago
+157,Luan Tarumoto de Macedo,Maio,Atleta,55.0,pago
+158,Luanda Shibata de Jesus Vital,Maio,Atleta,55.0,pago
+159,Lucas Bruck,Maio,Atleta,55.0,pago
+160,Luiz Henrique Almeida Pinto,Maio,Atleta,,pago
+161,Marcelo Yuji Ruiz,Maio,Atleta,55.0,pago
+162,Maria Gabriely dos Santos,Maio,Atleta,55.0,pago
+163,Maria Julia Pedroso de Oliveira Souza,Maio,Atleta,0.0,pago
+164,Mateus Pazinatto,Maio,Atleta,55.0,pago
+165,Matheus Orlando Fenili,Maio,Atleta,55.0,pago
+166,Natalia Massari,Maio,Atleta,55.0,pago
+167,Nestor da Silva Santos Junior,Maio,Atleta,55.0,pago
+168,Rhafaela Graciano de Oliveira,Maio,Atleta,55.0,pago
+169,Yaron Büchler,Maio,Atleta,55.0,pago
+170,Amanda dos Anjos Santos,Junho,Atleta,55.0,pago
+171,Ana Luiza de Moraes Guimarães,Junho,Atleta,55.0,pago
+172,Antonio Totti Gonçalves,Junho,Atleta,55.0,pago
+173,Bruna Aika Kiyono,Junho,Atleta,55.0,pago
+174,Calebe Fernandes de Oliveira,Junho,Atleta,55.0,pago
+175,Daniel Kawata Hara,Junho,Atleta,55.0,pago
+176,Edilson Pereira Nantes Junior,Junho,Atleta,55.0,pago
+177,Felipe Lira do Carmo Soares,Junho,Atleta,55.0,pago
+178,Gabriel Marcondes Trigolo,Junho,Atleta,55.0,pago
+179,Gabriel Pereira de Oliveira,Junho,Atleta,55.0,pago
+180,Gustavo Lopes Ribeiro,Junho,Atleta,55.0,pago
+181,Heloá Cristina Siqueira Da Silva,Junho,Atleta,55.0,pago
+182,Heloisa Prado de Oliveira,Junho,Atleta,55.0,pago
+183,Igor Silva Sena,Junho,Atleta,55.0,pago
+184,João Pedro Bento,Junho,Atleta,55.0,pago
+185,João Pedro Gomes de Almeida,Junho,Atleta,55.0,pago
+186,João Vitor de Oliveira Pinho,Junho,Atleta,,multa
+187,João Vitor Nogueira Santos,Junho,Atleta,62.0,pago
+188,Júlia Pivello Vila Real,Junho,Atleta,55.0,pago
+189,Kaue Kato Nunes,Junho,Atleta,62.0,pago
+190,Letícia Esteves Rosa Pereira,Junho,Atleta,55.0,pago
+191,Luan Tarumoto de Macedo,Junho,Atleta,55.0,pago
+192,Luanda Shibata de Jesus Vital,Junho,Atleta,55.0,pago
+193,Lucas Bruck,Junho,Atleta,55.0,pago
+194,Luiz Henrique Almeida Pinto,Junho,Atleta,,pago
+195,Marcelo Yuji Ruiz,Junho,Atleta,55.0,pago
+196,Maria Gabriely dos Santos,Junho,Atleta,55.0,pago
+197,Maria Julia Pedroso de Oliveira Souza,Junho,Atleta,0.0,pago
+198,Mateus Pazinatto,Junho,Atleta,55.0,pago
+199,Matheus Orlando Fenili,Junho,Atleta,55.0,pago
+200,Natalia Massari,Junho,Atleta,55.0,pago
+201,Nestor da Silva Santos Junior,Junho,Atleta,62.0,pago
+202,Rhafaela Graciano de Oliveira,Junho,Atleta,55.0,pago
+203,Yaron Büchler,Junho,Atleta,55.0,pago
+204,Amanda dos Anjos Santos,Julho,Atleta,,avisado
+205,Ana Luiza de Moraes Guimarães,Julho,Atleta,55.0,pago
+206,Antonio Totti Gonçalves,Julho,Atleta,55.0,pago
+207,Bruna Aika Kiyono,Julho,Atleta,55.0,pago
+208,Calebe Fernandes de Oliveira,Julho,Atleta,55.0,pago
+209,Daniel Kawata Hara,Julho,Atleta,55.0,pago
+210,Edilson Pereira Nantes Junior,Julho,Atleta,55.0,pago
+211,Felipe Lira do Carmo Soares,Julho,Atleta,55.0,pago
+212,Gabriel Marcondes Trigolo,Julho,Atleta,55.0,pago
+213,Gabriel Pereira de Oliveira,Julho,Atleta,,multa
+214,Gustavo Lopes Ribeiro,Julho,Atleta,55.0,pago
+215,Heloá Cristina Siqueira Da Silva,Julho,Atleta,,pgm 20/08
+216,Heloisa Prado de Oliveira,Julho,Atleta,55.0,pago
+217,Igor Silva Sena,Julho,Atleta,55.0,pago
+218,João Pedro Bento,Julho,Atleta,55.0,pago
+219,João Pedro Gomes de Almeida,Julho,Atleta,55.0,pago
+220,João Vitor de Oliveira Pinho,Julho,Atleta,,multa
+221,João Vitor Nogueira Santos,Julho,Atleta,62.0,pago
+222,Júlia Pivello Vila Real,Julho,Atleta,55.0,pago
+223,Kaue Kato Nunes,Julho,Atleta,55.0,pago
+224,Letícia Esteves Rosa Pereira,Julho,Atleta,62.0,pago
+225,Luan Tarumoto de Macedo,Julho,Atleta,55.0,pago
+226,Luanda Shibata de Jesus Vital,Julho,Atleta,55.0,pago
+227,Lucas Bruck,Julho,Atleta,55.0,pago
+228,Luiz Henrique Almeida Pinto,Julho,Atleta,,pago
+229,Marcelo Yuji Ruiz,Julho,Atleta,55.0,pago
+230,Maria Gabriely dos Santos,Julho,Atleta,55.0,pago
+231,Maria Julia Pedroso de Oliveira Souza,Julho,Atleta,0.0,pago
+232,Mateus Pazinatto,Julho,Atleta,55.0,pago
+233,Matheus Orlando Fenili,Julho,Atleta,55.0,pago
+234,Natalia Massari,Julho,Atleta,55.0,pago
+235,Nestor da Silva Santos Junior,Julho,Atleta,55.0,pago
+236,Rhafaela Graciano de Oliveira,Julho,Atleta,55.0,pago
+237,Yaron Büchler,Julho,Atleta,55.0,pago
+238,Amanda dos Anjos Santos,Agosto,Atleta,,pago
+239,Ana Luiza de Moraes Guimarães,Agosto,Atleta,55.0,pago
+240,Antonio Totti Gonçalves,Agosto,Atleta,55.0,pago
+241,Bruna Aika Kiyono,Agosto,Atleta,55.0,pago
+242,Calebe Fernandes de Oliveira,Agosto,Atleta,55.0,pago
+243,Daniel Kawata Hara,Agosto,Atleta,55.0,pago
+244,Edilson Pereira Nantes Junior,Agosto,Atleta,55.0,pago
+245,Felipe Lira do Carmo Soares,Agosto,Atleta,,pago
+246,Gabriel Marcondes Trigolo,Agosto,Atleta,55.0,pago
+247,Gabriel Pereira de Oliveira,Agosto,Atleta,,pago
+248,Gustavo Lopes Ribeiro,Agosto,Atleta,,pago
+249,Heloá Cristina Siqueira Da Silva,Agosto,Atleta,,pago
+250,Heloisa Prado de Oliveira,Agosto,Atleta,55.0,pago
+251,Igor Silva Sena,Agosto,Atleta,55.0,pago
+252,João Pedro Bento,Agosto,Atleta,,pago
+253,João Pedro Gomes de Almeida,Agosto,Atleta,,pago
+254,João Vitor de Oliveira Pinho,Agosto,Atleta,,pago
+255,João Vitor Nogueira Santos,Agosto,Atleta,,pago
+256,Júlia Pivello Vila Real,Agosto,Atleta,,pago
+257,Kaue Kato Nunes,Agosto,Atleta,,avisado
+258,Letícia Esteves Rosa Pereira,Agosto,Atleta,,pgm d20
+259,Luan Tarumoto de Macedo,Agosto,Atleta,55.0,pago
+260,Luanda Shibata de Jesus Vital,Agosto,Atleta,55.0,pago
+261,Lucas Bruck,Agosto,Atleta,,pago
+262,Luiz Henrique Almeida Pinto,Agosto,Atleta,,pago
+263,Marcelo Yuji Ruiz,Agosto,Atleta,55.0,pago
+264,Maria Gabriely dos Santos,Agosto,Atleta,55.0,pago
+265,Maria Julia Pedroso de Oliveira Souza,Agosto,Atleta,0.0,pago
+266,Mateus Pazinatto,Agosto,Atleta,55.0,pago
+267,Matheus Orlando Fenili,Agosto,Atleta,55.0,pago
+268,Natalia Massari,Agosto,Atleta,55.0,pago
+269,Nestor da Silva Santos Junior,Agosto,Atleta,,pago
+270,Rhafaela Graciano de Oliveira,Agosto,Atleta,,avisado
+271,Yaron Büchler,Agosto,Atleta,,pago
+272,Amanda dos Anjos Santos,Setembro,Atleta,,pago
+273,Ana Luiza de Moraes Guimarães,Setembro,Atleta,,pago
+274,Antonio Totti Gonçalves,Setembro,Atleta,,pago
+275,Bruna Aika Kiyono,Setembro,Atleta,,pago
+276,Calebe Fernandes de Oliveira,Setembro,Atleta,,pago
+277,Daniel Kawata Hara,Setembro,Atleta,,pago
+278,Edilson Pereira Nantes Junior,Setembro,Atleta,,pago
+279,Felipe Lira do Carmo Soares,Setembro,Atleta,,pago
+280,Gabriel Marcondes Trigolo,Setembro,Atleta,,pago
+281,Gabriel Pereira de Oliveira,Setembro,Atleta,,pago
+282,Gustavo Lopes Ribeiro,Setembro,Atleta,,pago
+283,Heloá Cristina Siqueira Da Silva,Setembro,Atleta,,pago
+284,Heloisa Prado de Oliveira,Setembro,Atleta,,pago
+285,Igor Silva Sena,Setembro,Atleta,,pago
+286,João Pedro Bento,Setembro,Atleta,,pago
+287,João Pedro Gomes de Almeida,Setembro,Atleta,,pago
+288,João Vitor de Oliveira Pinho,Setembro,Atleta,,pago
+289,João Vitor Nogueira Santos,Setembro,Atleta,,pago
+290,Júlia Pivello Vila Real,Setembro,Atleta,,pago
+291,Kaue Kato Nunes,Setembro,Atleta,,pago
+292,Letícia Esteves Rosa Pereira,Setembro,Atleta,,pgm d20
+293,Luan Tarumoto de Macedo,Setembro,Atleta,,pago
+294,Luanda Shibata de Jesus Vital,Setembro,Atleta,,pago
+295,Lucas Bruck,Setembro,Atleta,,pago
+296,Luiz Henrique Almeida Pinto,Setembro,Atleta,,pago
+297,Marcelo Yuji Ruiz,Setembro,Atleta,,pago
+298,Maria Gabriely dos Santos,Setembro,Atleta,,pago
+299,Maria Julia Pedroso de Oliveira Souza,Setembro,Atleta,0.0,pago
+300,Mateus Pazinatto,Setembro,Atleta,,pago
+301,Matheus Orlando Fenili,Setembro,Atleta,,pago
+302,Natalia Massari,Setembro,Atleta,,pago
+303,Nestor da Silva Santos Junior,Setembro,Atleta,,pago
+304,Rhafaela Graciano de Oliveira,Setembro,Atleta,,pago
+305,Yaron Büchler,Setembro,Atleta,,pago
+306,Amanda dos Anjos Santos,Outubro,Atleta,,pago
+307,Ana Luiza de Moraes Guimarães,Outubro,Atleta,,pago
+308,Antonio Totti Gonçalves,Outubro,Atleta,,pago
+309,Bruna Aika Kiyono,Outubro,Atleta,,pago
+310,Calebe Fernandes de Oliveira,Outubro,Atleta,,pago
+311,Daniel Kawata Hara,Outubro,Atleta,,pago
+312,Edilson Pereira Nantes Junior,Outubro,Atleta,,pago
+313,Felipe Lira do Carmo Soares,Outubro,Atleta,,pago
+314,Gabriel Marcondes Trigolo,Outubro,Atleta,,pago
+315,Gabriel Pereira de Oliveira,Outubro,Atleta,,pago
+316,Gustavo Lopes Ribeiro,Outubro,Atleta,,pago
+317,Heloá Cristina Siqueira Da Silva,Outubro,Atleta,,pago
+318,Heloisa Prado de Oliveira,Outubro,Atleta,,pago
+319,Igor Silva Sena,Outubro,Atleta,,pago
+320,João Pedro Bento,Outubro,Atleta,,pago
+321,João Pedro Gomes de Almeida,Outubro,Atleta,,pago
+322,João Vitor de Oliveira Pinho,Outubro,Atleta,,pago
+323,João Vitor Nogueira Santos,Outubro,Atleta,,pago
+324,Júlia Pivello Vila Real,Outubro,Atleta,,pago
+325,Kaue Kato Nunes,Outubro,Atleta,,pago
+326,Letícia Esteves Rosa Pereira,Outubro,Atleta,,pgm d20
+327,Luan Tarumoto de Macedo,Outubro,Atleta,,pago
+328,Luanda Shibata de Jesus Vital,Outubro,Atleta,,pago
+329,Lucas Bruck,Outubro,Atleta,,pago
+330,Luiz Henrique Almeida Pinto,Outubro,Atleta,,pago
+331,Marcelo Yuji Ruiz,Outubro,Atleta,,pago
+332,Maria Gabriely dos Santos,Outubro,Atleta,,pago
+333,Maria Julia Pedroso de Oliveira Souza,Outubro,Atleta,0.0,pago
+334,Mateus Pazinatto,Outubro,Atleta,,pago
+335,Matheus Orlando Fenili,Outubro,Atleta,,pago
+336,Natalia Massari,Outubro,Atleta,,pago
+337,Nestor da Silva Santos Junior,Outubro,Atleta,,pago
+338,Rhafaela Graciano de Oliveira,Outubro,Atleta,,pago
+339,Yaron Büchler,Outubro,Atleta,,pago
+340,Amanda dos Anjos Santos,Novembro,Atleta,,pago
+341,Ana Luiza de Moraes Guimarães,Novembro,Atleta,,pago
+342,Antonio Totti Gonçalves,Novembro,Atleta,,pago
+343,Bruna Aika Kiyono,Novembro,Atleta,,pago
+344,Calebe Fernandes de Oliveira,Novembro,Atleta,,pago
+345,Daniel Kawata Hara,Novembro,Atleta,,pago
+346,Edilson Pereira Nantes Junior,Novembro,Atleta,,pago
+347,Felipe Lira do Carmo Soares,Novembro,Atleta,,pago
+348,Gabriel Marcondes Trigolo,Novembro,Atleta,,pago
+349,Gabriel Pereira de Oliveira,Novembro,Atleta,,pago
+350,Gustavo Lopes Ribeiro,Novembro,Atleta,,pago
+351,Heloá Cristina Siqueira Da Silva,Novembro,Atleta,,pago
+352,Heloisa Prado de Oliveira,Novembro,Atleta,,pago
+353,Igor Silva Sena,Novembro,Atleta,,pago
+354,João Pedro Bento,Novembro,Atleta,,pago
+355,João Pedro Gomes de Almeida,Novembro,Atleta,,pago
+356,João Vitor de Oliveira Pinho,Novembro,Atleta,,pago
+357,João Vitor Nogueira Santos,Novembro,Atleta,,pago
+358,Júlia Pivello Vila Real,Novembro,Atleta,,pago
+359,Kaue Kato Nunes,Novembro,Atleta,,pago
+360,Letícia Esteves Rosa Pereira,Novembro,Atleta,,pgm d20
+361,Luan Tarumoto de Macedo,Novembro,Atleta,,pago
+362,Luanda Shibata de Jesus Vital,Novembro,Atleta,,pago
+363,Lucas Bruck,Novembro,Atleta,,pago
+364,Luiz Henrique Almeida Pinto,Novembro,Atleta,,pago
+365,Marcelo Yuji Ruiz,Novembro,Atleta,,pago
+366,Maria Gabriely dos Santos,Novembro,Atleta,,pago
+367,Maria Julia Pedroso de Oliveira Souza,Novembro,Atleta,0.0,pago
+368,Mateus Pazinatto,Novembro,Atleta,,pago
+369,Matheus Orlando Fenili,Novembro,Atleta,,pago
+370,Natalia Massari,Novembro,Atleta,,pago
+371,Nestor da Silva Santos Junior,Novembro,Atleta,,pago
+372,Rhafaela Graciano de Oliveira,Novembro,Atleta,,pago
+373,Yaron Büchler,Novembro,Atleta,,pago
+374,Amanda dos Anjos Santos,Dezembro,Atleta,,pago
+375,Ana Luiza de Moraes Guimarães,Dezembro,Atleta,,pago
+376,Antonio Totti Gonçalves,Dezembro,Atleta,,pago
+377,Bruna Aika Kiyono,Dezembro,Atleta,,pago
+378,Calebe Fernandes de Oliveira,Dezembro,Atleta,,pago
+379,Daniel Kawata Hara,Dezembro,Atleta,,pago
+380,Edilson Pereira Nantes Junior,Dezembro,Atleta,,pago
+381,Felipe Lira do Carmo Soares,Dezembro,Atleta,,pago
+382,Gabriel Marcondes Trigolo,Dezembro,Atleta,,pago
+383,Gabriel Pereira de Oliveira,Dezembro,Atleta,,pago
+384,Gustavo Lopes Ribeiro,Dezembro,Atleta,,pago
+385,Heloá Cristina Siqueira Da Silva,Dezembro,Atleta,,pago
+386,Heloisa Prado de Oliveira,Dezembro,Atleta,,pago
+387,Igor Silva Sena,Dezembro,Atleta,,pago
+388,João Pedro Bento,Dezembro,Atleta,,pago
+389,João Pedro Gomes de Almeida,Dezembro,Atleta,,pago
+390,João Vitor de Oliveira Pinho,Dezembro,Atleta,,pago
+391,João Vitor Nogueira Santos,Dezembro,Atleta,,pago
+392,Júlia Pivello Vila Real,Dezembro,Atleta,,pago
+393,Kaue Kato Nunes,Dezembro,Atleta,,pago
+394,Letícia Esteves Rosa Pereira,Dezembro,Atleta,,pgm d20
+395,Luan Tarumoto de Macedo,Dezembro,Atleta,,pago
+396,Luanda Shibata de Jesus Vital,Dezembro,Atleta,,pago
+397,Lucas Bruck,Dezembro,Atleta,,pago
+398,Luiz Henrique Almeida Pinto,Dezembro,Atleta,,pago
+399,Marcelo Yuji Ruiz,Dezembro,Atleta,,pago
+400,Maria Gabriely dos Santos,Dezembro,Atleta,,pago
+401,Maria Julia Pedroso de Oliveira Souza,Dezembro,Atleta,0.0,pago
+402,Mateus Pazinatto,Dezembro,Atleta,,pago
+403,Matheus Orlando Fenili,Dezembro,Atleta,,pago
+404,Natalia Massari,Dezembro,Atleta,,pago
+405,Nestor da Silva Santos Junior,Dezembro,Atleta,,pago
+406,Rhafaela Graciano de Oliveira,Dezembro,Atleta,,pago
+407,Yaron Büchler,Dezembro,Atleta,,pago
+0,Beatriz Forcato Lima,Janeiro,Associado,25.0,pago
+1,Leonardo Kiyoshi Tioda Menezes Rocha,Janeiro,Associado,25.0,pago
+2,Matheus Rubio Durão,Janeiro,Associado,0.0,pago
+3,Pedro Araujo Bueno de Oliveira,Janeiro,Associado,0.0,pago
+4,Beatriz Dora Waricoda,Janeiro,Associado,0.0,pago
+5,Beatriz Forcato Lima,Fevereiro,Associado,25.0,pago
+6,Leonardo Kiyoshi Tioda Menezes Rocha,Fevereiro,Associado,25.0,pago
+7,Matheus Rubio Durão,Fevereiro,Associado,0.0,pago
+8,Pedro Araujo Bueno de Oliveira,Fevereiro,Associado,0.0,pago
+9,Beatriz Dora Waricoda,Fevereiro,Associado,0.0,pago
+10,Beatriz Forcato Lima,Março,Associado,25.0,pago
+11,Leonardo Kiyoshi Tioda Menezes Rocha,Março,Associado,25.0,pago
+12,Matheus Rubio Durão,Março,Associado,0.0,pago
+13,Pedro Araujo Bueno de Oliveira,Março,Associado,0.0,pago
+14,Beatriz Dora Waricoda,Março,Associado,0.0,pago
+15,Beatriz Forcato Lima,Abril,Associado,25.0,pago
+16,Leonardo Kiyoshi Tioda Menezes Rocha,Abril,Associado,25.0,pago
+17,Matheus Rubio Durão,Abril,Associado,0.0,pago
+18,Pedro Araujo Bueno de Oliveira,Abril,Associado,0.0,pago
+19,Beatriz Dora Waricoda,Abril,Associado,0.0,pago
+20,Beatriz Forcato Lima,Maio,Associado,25.0,pago
+21,Leonardo Kiyoshi Tioda Menezes Rocha,Maio,Associado,25.0,pago
+22,Matheus Rubio Durão,Maio,Associado,0.0,pago
+23,Pedro Araujo Bueno de Oliveira,Maio,Associado,0.0,pago
+24,Beatriz Dora Waricoda,Maio,Associado,0.0,pago
+25,Beatriz Forcato Lima,Junho,Associado,25.0,pago
+26,Leonardo Kiyoshi Tioda Menezes Rocha,Junho,Associado,25.0,pago
+27,Matheus Rubio Durão,Junho,Associado,0.0,pago
+28,Pedro Araujo Bueno de Oliveira,Junho,Associado,0.0,pago
+29,Beatriz Dora Waricoda,Junho,Associado,0.0,pago
+30,Beatriz Forcato Lima,Julho,Associado,,pago
+31,Leonardo Kiyoshi Tioda Menezes Rocha,Julho,Associado,,pago
+32,Matheus Rubio Durão,Julho,Associado,25.0,pago
+33,Pedro Araujo Bueno de Oliveira,Julho,Associado,25.0,pago
+34,Beatriz Dora Waricoda,Julho,Associado,25.0,pago
+35,Beatriz Forcato Lima,Agosto,Associado,,pago
+36,Leonardo Kiyoshi Tioda Menezes Rocha,Agosto,Associado,,pago
+37,Matheus Rubio Durão,Agosto,Associado,,pago
+38,Pedro Araujo Bueno de Oliveira,Agosto,Associado,,pago
+39,Beatriz Dora Waricoda,Agosto,Associado,,pago
+40,Beatriz Forcato Lima,Setembro,Associado,,pago
+41,Leonardo Kiyoshi Tioda Menezes Rocha,Setembro,Associado,,pago
+42,Matheus Rubio Durão,Setembro,Associado,,pago
+43,Pedro Araujo Bueno de Oliveira,Setembro,Associado,,pago
+44,Beatriz Dora Waricoda,Setembro,Associado,,pago
+45,Beatriz Forcato Lima,Outubro,Associado,,pago
+46,Leonardo Kiyoshi Tioda Menezes Rocha,Outubro,Associado,,pago
+47,Matheus Rubio Durão,Outubro,Associado,,pago
+48,Pedro Araujo Bueno de Oliveira,Outubro,Associado,,pago
+49,Beatriz Dora Waricoda,Outubro,Associado,,pago
+50,Beatriz Forcato Lima,Novembro,Associado,,pago
+51,Leonardo Kiyoshi Tioda Menezes Rocha,Novembro,Associado,,pago
+52,Matheus Rubio Durão,Novembro,Associado,,pago
+53,Pedro Araujo Bueno de Oliveira,Novembro,Associado,,pago
+54,Beatriz Dora Waricoda,Novembro,Associado,,pago
+55,Beatriz Forcato Lima,Dezembro,Associado,,pago
+56,Leonardo Kiyoshi Tioda Menezes Rocha,Dezembro,Associado,,pago
+57,Matheus Rubio Durão,Dezembro,Associado,,pago
+58,Pedro Araujo Bueno de Oliveira,Dezembro,Associado,,pago
+59,Beatriz Dora Waricoda,Dezembro,Associado,,pago
