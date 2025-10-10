@@ -1,0 +1,21 @@
+services:
+  cheer_finance_dw:
+    env_file:
+      - .env
+    user : "1000:1000"
+    container_name: cheer_finance_dw
+    hostname: cheer_finance_dw
+    image: mysql:8
+    restart: always
+    command:
+      - --mysql-native-password=ON
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb_force_recovery=0
+    volumes:
+      - ./cheer_finance_dw:/var/lib/mysql
+      - ./sql_script:/docker-entrypoint-initdb.d/
+    ports:
+      - 3307:3306
+    environment:
+      TZ: America/Sao_Paulo

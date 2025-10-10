@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS dim_category(
+    id_category INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) UNIQUE
+);
