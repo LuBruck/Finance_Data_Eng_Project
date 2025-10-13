@@ -16,6 +16,6 @@ services:
       - ./cheer_finance_dw:/var/lib/mysql
       - ./sql_script:/docker-entrypoint-initdb.d/
     ports:
-      - 3307:3306
+      - "${MYSQL_HOST_PORT}:3306"
     environment:
       TZ: America/Sao_Paulo
