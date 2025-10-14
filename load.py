@@ -62,6 +62,32 @@ def load_dim_time(connection : pymysql.Connect, start_date:str, end_date:str):
         connection.commit()
     return result
 
+def insert_dim_category(connection : pymysql.Connect, categorys : list):
+
+    categorys = [(c,) for c in categorys]
+
+    with connection.cursor() as cursor:
+        sql = (
+            'INSERT IGNORE INTO dim_category(name) '
+            'VALUES (%s) '
+        )
+        cursor.executemany(sql, categorys)
+
+    with connection.cursor() as cursor:
+        placeholders = ', '.join(['%s'] * len(categorys))
+        sql = (
+            f'SELECT * FROM dim_category '
+            f'WHERE name IN ({placeholders}) '
+        )
+        cursor.execute(sql, categorys)
+        result = cursor.fetchall()
+
+    return result
+
+def load_dim_category(conection: pymysql.Connect):
+    
+    ...
+
 if __name__ == "__main__":
 
     connection = pymysql.Connect(
@@ -73,5 +99,10 @@ if __name__ == "__main__":
     )
 
     with connection:
-        dt = load_dim_time(connection, '2020-01-01', '2028-12-31')
+        # dt = load_dim_time(connection, '2020-01-01', '2028-12-31')
+        categorys = ["Atleta", "Associado", "Ex-Atleta"]
+        dt = load_dim_category(connection, categorys)
+
+        for a in dt:
+            print(a)
        
