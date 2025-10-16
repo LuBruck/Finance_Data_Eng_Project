@@ -107,6 +107,45 @@ def load_dim_team(connection : pymysql.Connect, team : tuple):
        data=team
    )
 
+def _lookup_id(conecction: pymysql.Connect, table_name , key, id_name):
+
+    sql = f"SELECT {key}, {id_name} FROM {table_name}"
+    with conecction.cursor() as cursor:
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        df_lookup = pd.DataFrame(result, columns=[key, id_name])
+        return df_lookup.set_index(key)[id_name].to_dict()
+
+def load_dim_person(connection: pymysql.Connect, path_cvs : str):
+    df = pd.read_csv(path_cvs)
+    ids_lookup = _lookup_id(
+        connection,
+        'dim_category',
+        'name',
+        'id_category'
+    )
+    df['id_category'] = df['Categoria'].map(ids_lookup)
+
+    values = df[["Nome", "CPF", "Categoria", "Primeiro Nome", "Ultimo Nome", "id_category"]].to_dict('records')
+    with connection.cursor() as cursor:
+        
+        sql = (
+            'INSERT INTO dim_person(cpf, full_name, first_name, last_name, id_category) '
+            'VALUES (%(CPF)s, %(Nome)s, %(Primeiro Nome)s, %(Ultimo Nome)s, %(id_category)s) '
+            'ON DUPLICATE KEY UPDATE '
+            'id_category = VALUES(id_category) '
+        )
+        cursor.executemany(sql, values)
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            'SELECT * FROM dim_person '
+        )
+        result = cursor.fetchall()
+    return result
+
+
 if __name__ == "__main__":
 
     connection = pymysql.Connect(
@@ -114,7 +153,8 @@ if __name__ == "__main__":
         database=os.getenv('MYSQL_DATABASE'),
         user=os.getenv('MYSQL_USER'),
         passwd=os.getenv('MYSQL_PASSWORD'),
-        port=int(os.getenv('MYSQL_HOST_PORT'))
+        port=int(os.getenv('MYSQL_HOST_PORT')),
+        cursorclass= pymysql.cursors.DictCursor
     )
 
     with connection:
@@ -127,8 +167,9 @@ if __name__ == "__main__":
         #     cursor.execute('ALTER TABLE dim_category AUTO_INCREMENT = 1')
         # connection.commit()
 
-        # categorys = ("Atleta", "Associado", "Ex-Atleta")
-        # dt = load_dim_category(connection, categorys)
+        categorys = ("Atleta", "Associado", "Ex-Atleta")
+        dt = load_dim_category(connection, categorys)
+        connection.commit()
         # for a in dt:
         #     print(a)
        
@@ -143,3 +184,12 @@ if __name__ == "__main__":
         # for a in dt:
         #     print(a)
        
+        with connection.cursor() as cursor:
+            cursor.execute('ALTER TABLE dim_person AUTO_INCREMENT = 1')
+        connection.commit()
+        dt = load_dim_person(connection, "out/person_master")
+        connection.commit()
+
+        for a in dt:
+            print(a)
+

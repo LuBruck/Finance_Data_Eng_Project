@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS bridge_team_member(
-    cpf INT,
-    FOREIGN KEY(cpf) REFERENCES dim_person(cpf),
+    id_person INT,
+    FOREIGN KEY(id_person) REFERENCES dim_person(id_person),
     id_championship INT,
     FOREIGN KEY(id_championship) REFERENCES dim_championship(id_championship),
     id_team INT,

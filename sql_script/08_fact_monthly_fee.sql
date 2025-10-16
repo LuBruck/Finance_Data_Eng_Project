@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS fact_monthly_fee (
     value FLOAT, 
     status VARCHAR(100),
     obs VARCHAR(100),
-    cpf INT, 
-    FOREIGN KEY(cpf) REFERENCES dim_person(cpf),
+    id_person INT, 
+    FOREIGN KEY(id_person) REFERENCES dim_person(id_person),
     id_time INT, 
     FOREIGN KEY(id_time) REFERENCES dim_time(id_time)
 );
