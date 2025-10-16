@@ -59,34 +59,53 @@ def load_dim_time(connection : pymysql.Connect, start_date:str, end_date:str):
     else:
         print("Datas adicionadas na tabela!!")
         result = insert_time_data(connection, start_date, end_date)
-        connection.commit()
     return result
 
-def insert_dim_category(connection : pymysql.Connect, categorys : list):
-
-    categorys = [(c,) for c in categorys]
+def _load_generic_dimension(connection : pymysql.Connect,table : str , column : str,data : tuple):
 
     with connection.cursor() as cursor:
         sql = (
-            'INSERT IGNORE INTO dim_category(name) '
+            f'INSERT IGNORE INTO {table}({column}) '
             'VALUES (%s) '
         )
-        cursor.executemany(sql, categorys)
+        cursor.executemany(sql, data)
 
     with connection.cursor() as cursor:
-        placeholders = ', '.join(['%s'] * len(categorys))
-        sql = (
-            f'SELECT * FROM dim_category '
-            f'WHERE name IN ({placeholders}) '
+        placeholders = ', '.join(['%s'] * len(data))
+        sql_select = (
+            f'SELECT * FROM {table} '
+            f'WHERE {column} IN ({placeholders}) '
         )
-        cursor.execute(sql, categorys)
+        cursor.execute(sql_select, data)
         result = cursor.fetchall()
-
     return result
 
-def load_dim_category(conection: pymysql.Connect):
-    
-    ...
+
+def load_dim_category(connection : pymysql.Connect, categorys : tuple):
+    """Load membry categorys in the table dim_category"""
+    return _load_generic_dimension(
+        connection=connection, 
+        table='dim_category',
+        column='name',
+        data=categorys)
+
+def load_dim_championship(connection : pymysql.Connect, championship : tuple):
+    """ Load the championships name in the table dim_championship"""
+    return _load_generic_dimension(
+       connection=connection,
+       table='dim_championship',
+       column='name',
+       data=championship
+   )
+
+def load_dim_team(connection : pymysql.Connect, team : tuple):
+    """Load the name of the teams in the table dim_team"""
+    return _load_generic_dimension(
+       connection=connection,
+       table='dim_team',
+       column='name',
+       data=team
+   )
 
 if __name__ == "__main__":
 
@@ -99,10 +118,28 @@ if __name__ == "__main__":
     )
 
     with connection:
+        ...
         # dt = load_dim_time(connection, '2020-01-01', '2028-12-31')
-        categorys = ["Atleta", "Associado", "Ex-Atleta"]
-        dt = load_dim_category(connection, categorys)
 
-        for a in dt:
-            print(a)
+
+        # with connection.cursor() as cursor:
+        #     cursor.execute('DELETE FROM dim_category')
+        #     cursor.execute('ALTER TABLE dim_category AUTO_INCREMENT = 1')
+        # connection.commit()
+
+        # categorys = ("Atleta", "Associado", "Ex-Atleta")
+        # dt = load_dim_category(connection, categorys)
+        # for a in dt:
+        #     print(a)
+       
+
+        # with connection.cursor() as cursor:
+        #     cursor.execute('DELETE FROM dim_championship')
+        #     cursor.execute('ALTER TABLE dim_championship AUTO_INCREMENT = 1')
+        # connection.commit()
+
+        # championship = ('CheerFest', 'Arena', 'Engenhariadas')
+        # dt = load_dim_championship(connection, championship)
+        # for a in dt:
+        #     print(a)
        
