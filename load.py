@@ -145,6 +145,43 @@ def load_dim_person(connection: pymysql.Connect, path_cvs : str):
         result = cursor.fetchall()
     return result
 
+def get_unique_values(path: str, column_name : str) -> tuple:
+
+    dt = pd.read_csv(path, usecols=[column_name])
+
+    unique_values = (
+        dt[column_name]
+        .str.strip()
+        .str.capitalize()
+        .dropna()
+        .drop_duplicates()
+        .tolist()
+        )
+    return unique_values
+
+def load_bridge_team_member(connection: pymysql.Connect):
+
+    # 1. Obter o mapa de CPFs para id_person
+    person_id_map = _lookup_id(connection, 'dim_person', 'cpf', 'id_person')
+
+    # 2. Obter o mapa de Nome do Time para id_team
+    # Se dim_team tiver o 'name' do time
+    team_id_map = _lookup_id(connection, 'dim_team', 'name', 'id_team')
+
+    # 3. Obter o mapa de Nome do Campeonato para id_championship
+    championship_id_map = _lookup_id(connection, 'dim_championship', 'name', 'id_championship')
+
+    dt = pd.read_csv("out/team_person")
+    dt_team_person = pd.DataFrame
+    dt_team_person['id_person'] = dt['CPF'].map(person_id_map)
+    dt_team_person['id_team'] = dt['Nome Time'].map(team_id_map)
+    dt_team_person['id_championship'] = dt['']
+    
+        
+    sql = (
+        'INSERT INTO bridge_team_member(id_championship, id_person, id_team) '
+        'VALUES '
+    )
 
 if __name__ == "__main__":
 
@@ -159,37 +196,33 @@ if __name__ == "__main__":
 
     with connection:
         ...
-        # dt = load_dim_time(connection, '2020-01-01', '2028-12-31')
+        """
+        ==================================================
+                FASE 1: LOAD FIXED DIMENSIONS
+        ==================================================
+        """
 
+        ldt = load_dim_time(connection, '2020-01-01', '2028-12-31')
 
-        # with connection.cursor() as cursor:
-        #     cursor.execute('DELETE FROM dim_category')
-        #     cursor.execute('ALTER TABLE dim_category AUTO_INCREMENT = 1')
-        # connection.commit()
+        championship = ('CheerFest', 'Arena', 'Engenhariadas')
+        ldchap = load_dim_championship(connection, championship)
 
-        categorys = ("Atleta", "Associado", "Ex-Atleta")
-        dt = load_dim_category(connection, categorys)
-        connection.commit()
-        # for a in dt:
-        #     print(a)
-       
+        categorys = get_unique_values("out/person_master", "Categoria")
+        if len(categorys) > 0:
+            ldcat = load_dim_category(connection, categorys)
+            print("Categorias adicionadas")
+        else:
+            print("Nenhuma categoria na tabela")
 
-        # with connection.cursor() as cursor:
-        #     cursor.execute('DELETE FROM dim_championship')
-        #     cursor.execute('ALTER TABLE dim_championship AUTO_INCREMENT = 1')
-        # connection.commit()
+        team = get_unique_values("out/team_person", "Nome Time")
+        ldteam = load_dim_team(connection, team)
+        """
+        ==================================================
+                FASE 2: LOAD DIM_PERSON
+        ==================================================
+        """
 
-        # championship = ('CheerFest', 'Arena', 'Engenhariadas')
-        # dt = load_dim_championship(connection, championship)
-        # for a in dt:
-        #     print(a)
-       
-        with connection.cursor() as cursor:
-            cursor.execute('ALTER TABLE dim_person AUTO_INCREMENT = 1')
-        connection.commit()
-        dt = load_dim_person(connection, "out/person_master")
-        connection.commit()
+        ldp = load_dim_person(connection, "out/person_master")
+        
 
-        for a in dt:
-            print(a)
 

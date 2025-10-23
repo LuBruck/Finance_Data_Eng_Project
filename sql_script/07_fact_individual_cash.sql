@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS fact_individual_cash(
     id_individual_cash int PRIMARY KEY,
     value FLOAT,
-    origen VARCHAR(100),
+    source VARCHAR(100),
     id_person INT,
     FOREIGN KEY(id_person) REFERENCES dim_person(id_person),
     id_time INT,
