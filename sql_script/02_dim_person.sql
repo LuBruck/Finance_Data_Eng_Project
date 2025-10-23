@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS dim_person(
     id_person INT PRIMARY KEY AUTO_INCREMENT,
-    cpf VARCHAR(15) NOT NULL,
+    cpf VARCHAR(15) NOT NULL UNIQUE,
     full_name VARCHAR(200) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,

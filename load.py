@@ -52,10 +52,11 @@ def load_dim_time(connection : pymysql.Connect, start_date:str, end_date:str):
                 'WHERE `date` BETWEEN %s and %s'
             )
             cursor.execute(sql, (start_date, end_date))
-            cout_dates = cursor.fetchone()[0]
-            
-    if cout_dates > 0:
+            cout_dates = cursor.fetchone()
+
+    if cout_dates['COUNT(*)'] > 0:
         print("as datas indicadas já estao na tabela")
+        return
     else:
         print("Datas adicionadas na tabela!!")
         result = insert_time_data(connection, start_date, end_date)
@@ -63,20 +64,20 @@ def load_dim_time(connection : pymysql.Connect, start_date:str, end_date:str):
 
 def _load_generic_dimension(connection : pymysql.Connect,table : str , column : str,data : tuple):
 
+    num_columns = len(column)
+    value_placeholders = ', '.join(['%s'] * num_columns)
     with connection.cursor() as cursor:
         sql = (
-            f'INSERT IGNORE INTO {table}({column}) '
-            'VALUES (%s) '
+            f'INSERT IGNORE INTO {table}({", ".join(column)}) '
+            'VALUES ({value_placeholders}) '
         )
         cursor.executemany(sql, data)
 
     with connection.cursor() as cursor:
-        placeholders = ', '.join(['%s'] * len(data))
         sql_select = (
             f'SELECT * FROM {table} '
-            f'WHERE {column} IN ({placeholders}) '
         )
-        cursor.execute(sql_select, data)
+        cursor.execute(sql_select)
         result = cursor.fetchall()
     return result
 
@@ -91,12 +92,16 @@ def load_dim_category(connection : pymysql.Connect, categorys : tuple):
 
 def load_dim_championship(connection : pymysql.Connect, championship : tuple):
     """ Load the championships name in the table dim_championship"""
-    return _load_generic_dimension(
+    a = _load_generic_dimension(
        connection=connection,
        table='dim_championship',
        column='name',
        data=championship
    )
+    # data = [item.('-')[-1]
+    #         for item in championship]
+    # print(championship)
+    return a
 
 def load_dim_team(connection : pymysql.Connect, team : tuple):
     """Load the name of the teams in the table dim_team"""
@@ -114,11 +119,13 @@ def _lookup_id(conecction: pymysql.Connect, table_name , key, id_name):
         cursor.execute(sql)
         result = cursor.fetchall()
 
+
         df_lookup = pd.DataFrame(result, columns=[key, id_name])
+        df_lookup[key] = df_lookup[key].astype(str)
         return df_lookup.set_index(key)[id_name].to_dict()
 
 def load_dim_person(connection: pymysql.Connect, path_cvs : str):
-    df = pd.read_csv(path_cvs)
+    df = pd.read_csv(path_cvs, dtype=str)
     ids_lookup = _lookup_id(
         connection,
         'dim_category',
@@ -128,6 +135,8 @@ def load_dim_person(connection: pymysql.Connect, path_cvs : str):
     df['id_category'] = df['Categoria'].map(ids_lookup)
 
     values = df[["Nome", "CPF", "Categoria", "Primeiro Nome", "Ultimo Nome", "id_category"]].to_dict('records')
+
+    
     with connection.cursor() as cursor:
         
         sql = (
@@ -152,36 +161,35 @@ def get_unique_values(path: str, column_name : str) -> tuple:
     unique_values = (
         dt[column_name]
         .str.strip()
-        .str.capitalize()
+        .str.title()
         .dropna()
         .drop_duplicates()
         .tolist()
         )
     return unique_values
 
-def load_bridge_team_member(connection: pymysql.Connect):
+def load_bridge_team_member(connection: pymysql.Connect, path_team_person: str,
+                            path_championship_team: str):
 
-    # 1. Obter o mapa de CPFs para id_person
     person_id_map = _lookup_id(connection, 'dim_person', 'cpf', 'id_person')
 
-    # 2. Obter o mapa de Nome do Time para id_team
-    # Se dim_team tiver o 'name' do time
     team_id_map = _lookup_id(connection, 'dim_team', 'name', 'id_team')
 
-    # 3. Obter o mapa de Nome do Campeonato para id_championship
     championship_id_map = _lookup_id(connection, 'dim_championship', 'name', 'id_championship')
 
-    dt = pd.read_csv("out/team_person")
-    dt_team_person = pd.DataFrame
-    dt_team_person['id_person'] = dt['CPF'].map(person_id_map)
-    dt_team_person['id_team'] = dt['Nome Time'].map(team_id_map)
-    dt_team_person['id_championship'] = dt['']
-    
+    dt1 = pd.read_csv(path_team_person, dtype=str)
+    dt2 = pd.read_csv(path_championship_team, dtype=str)
+    dt_bridge = pd.DataFrame()
+    dt_bridge['id_person'] = dt1['CPF'].map(person_id_map)
+    dt_bridge['id_team'] = dt1['Nome Time'].map(team_id_map)
+    dt_bridge['id_championship'] = dt2['Nome_Time'].map(championship_id_map)
+
+    print(dt_bridge)
         
-    sql = (
-        'INSERT INTO bridge_team_member(id_championship, id_person, id_team) '
-        'VALUES '
-    )
+    # sql = (
+    #     'INSERT INTO bridge_team_member(id_championship, id_person, id_team) '
+    #     'VALUES '
+    # )
 
 if __name__ == "__main__":
 
@@ -204,7 +212,8 @@ if __name__ == "__main__":
 
         ldt = load_dim_time(connection, '2020-01-01', '2028-12-31')
 
-        championship = ('CheerFest', 'Arena', 'Engenhariadas')
+        championship = get_unique_values("out/championship_team", "Nome_Campeonato")
+        print(championship)
         ldchap = load_dim_championship(connection, championship)
 
         categorys = get_unique_values("out/person_master", "Categoria")
@@ -221,8 +230,16 @@ if __name__ == "__main__":
                 FASE 2: LOAD DIM_PERSON
         ==================================================
         """
-
+      
         ldp = load_dim_person(connection, "out/person_master")
+        connection.commit()
+        
+        load_bridge_team_member(connection, "out/team_person", "out/championship_team")
+
+
+        d = _load_generic_dimension(connection, "dim_championship",
+                                    ("name", "year"), (("cheerfest", "2016"), ("Arena", "2010")))
+        print(d)
         
 
 

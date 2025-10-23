@@ -99,41 +99,39 @@ def transform_person_master(path_in , path_out):
         },
         {
             "sheet_name" : "Times",
-            "header" : 1,
-            "usecols" :"A:C" 
+            "header" : 0,
+            "usecols" :"A:D"  
         },
         {
-            "sheet_name" : "Times",
-            "header" : 1,
-            "usecols" :"E:G"      
+            "sheet_name" : "Campeonatos",
+            "header" : 0,
+            "usecols" :"A:F"  
         }
     ]
     sheets = _extract_sheets(path_in,sheet)
-    sheets[2].rename(columns = {
-        "Nome.1" : "Nome",
-        "CPF.1" : "CPF",
-        "Time.1": "Time"
-    },
-    inplace = True
-    )
 
     for dt in sheets:
         dt.replace('', pd.NA, inplace = True)
         dt.dropna(how='all',inplace=True)
-        
-        dt["Nome"] = dt["Nome"].str.strip().str.replace(r'\s+', ' ', regex=True)
+        if "Nome" in dt.columns:
+            dt["Nome"] = dt["Nome"].str.strip().str.replace(r'\s+', ' ', regex=True)
 
-        dt["CPF"] = (
-            dt["CPF"]
-            .str.replace('.', '', regex=False)
-            .str.replace('-', '', regex=False)
-            .str.strip()
-        )
+            dt["CPF"] = (
+                dt["CPF"]
+                .str.replace('.', '', regex=False)
+                .str.replace('-', '', regex=False)
+                .str.strip()
+                .str.zfill(11)
+            )
 
     dt_person_master = sheets[0]
-    dt_team_person = pd.concat((sheets[1], sheets[2]), ignore_index= True)
+    dt_team_person = sheets[1]
+    dt_championship = sheets[2]
+
     dt_person_master['Primeiro Nome'] = dt_person_master['Nome'].str.split().str[0]
     dt_person_master['Ultimo Nome'] = dt_person_master['Nome'].str.split().str[-1]
+    dt_person_master['Categoria'] = dt_person_master['Categoria'].str.replace(' ', '', regex= False)
+    dt_team_person['Tipo - Time'] = dt_team_person['Tipo - Time'].str.split().str[0]
 
     conds = [
         dt_team_person['Time'].str.contains('AS', na=False),
@@ -156,6 +154,7 @@ def transform_person_master(path_in , path_out):
     if path_out:
         dt_person_master.to_csv(path_or_buf=f'{path_out}person_master')
         dt_team_person.to_csv(path_or_buf=f'{path_out}team_person')
+        dt_championship.to_csv(path_or_buf=f'{path_out}championship_team')
     return dt_person_master, dt_team_person
 
 
