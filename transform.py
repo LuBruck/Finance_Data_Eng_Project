@@ -30,10 +30,6 @@ def _extract_sheets(caminho : str, sheets_detail : list):
         return dts[0], dts[1]
     return dts
 
-    # dt_atletas = planilha.parse(sheet_name="Atletas", header=3 , usecols="B:N")
-    # dt_associados = planilha.parse(sheet_name="Associados", header=3,usecols= "B:N")
-
-    # return dt_atletas, dt_associados
 
 def _melt_monthly_fee(dt_raw : pd.DataFrame, categoria : str):
     meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 
@@ -52,8 +48,13 @@ def _melt_monthly_fee(dt_raw : pd.DataFrame, categoria : str):
 def _clean_monthly_payment(dt : pd.DataFrame):
     def separa_val(valor):
         if isinstance(valor, (int, float)):
-            return valor, "pago"
+            if valor > 0:
+                return valor, "pago"
+            elif valor == 0:
+                return 0, "nao pago"
         else:
+            if pd.isna(valor):
+                return np.nan, np.nan
             return np.nan, str(valor).strip().lower()
 
     dt[["Valor", "Status"]] = dt["Pagamento"].apply(
@@ -143,9 +144,9 @@ def transform_person_master(path_in , path_out):
         "COED " + dt_team_person["Time"].str.split().str[0]
     ]
     
-    dt_team_person["Nivel do time"] = np.select(conds, choices, default='')
+    dt_team_person["Nivel_time"] = np.select(conds, choices, default='')
 
-    dt_team_person["Nome Time"] = np.where(
+    dt_team_person["Nome_Time"] = np.where(
         dt_team_person['Time'].str.contains('C'),
         dt_team_person["Time"].str.split(" - ").str[1],
         ''
@@ -159,7 +160,7 @@ def transform_person_master(path_in , path_out):
 
 
 if __name__ == "__main__":
-    # dt_mensalidade_out = transform_monthly_fee_data("data/ControleMensalidades.xlsx", "out/ControleMensalidade")
+    dt_mensalidade_out = transform_monthly_fee_data("data/ControleMensalidades.xlsx", "out/ControleMensalidade")
 
     # print(dt_mensalidade_out)
 

@@ -68,8 +68,8 @@ def _load_generic_dimension(connection : pymysql.Connect,table : str , column : 
     value_placeholders = ', '.join(['%s'] * num_columns)
     with connection.cursor() as cursor:
         sql = (
-            f'INSERT IGNORE INTO {table}({", ".join(column)}) '
-            'VALUES ({value_placeholders}) '
+            f'INSERT IGNORE INTO {table}({column}) '
+            'VALUES (%s) '
         )
         cursor.executemany(sql, data)
 
@@ -172,24 +172,48 @@ def load_bridge_team_member(connection: pymysql.Connect, path_team_person: str,
                             path_championship_team: str):
 
     person_id_map = _lookup_id(connection, 'dim_person', 'cpf', 'id_person')
-
     team_id_map = _lookup_id(connection, 'dim_team', 'name', 'id_team')
-
     championship_id_map = _lookup_id(connection, 'dim_championship', 'name', 'id_championship')
-
+    
     dt1 = pd.read_csv(path_team_person, dtype=str)
     dt2 = pd.read_csv(path_championship_team, dtype=str)
-    dt_bridge = pd.DataFrame()
-    dt_bridge['id_person'] = dt1['CPF'].map(person_id_map)
-    dt_bridge['id_team'] = dt1['Nome Time'].map(team_id_map)
-    dt_bridge['id_championship'] = dt2['Nome_Time'].map(championship_id_map)
 
-    print(dt_bridge)
+
+    dt_merg = pd.merge(dt1[['Nome', 'CPF', 'Nome_Time']],
+                       dt2[['Nome_Time', 'Nome_Campeonato']],
+                       on="Nome_Time",
+                       how='inner',
+                       sort='Nome'
+                       )
+
+    dt_bridge = pd.DataFrame()
+    dt_bridge['id_person'] = dt_merg['CPF'].map(person_id_map)
+    dt_bridge['id_team'] = dt_merg['Nome_Time'].map(team_id_map)
+    dt_bridge['id_championship'] = dt_merg['Nome_Campeonato'].map(championship_id_map)
+    dt_bridge = dt_bridge.to_dict(orient='records')
+
         
-    # sql = (
-    #     'INSERT INTO bridge_team_member(id_championship, id_person, id_team) '
-    #     'VALUES '
-    # )
+    sql = (
+        'INSERT INTO bridge_team_member (id_person, id_team, id_championship) '
+        'VALUES (%(id_person)s, %(id_team)s, %(id_championship)s)'
+    )
+    with connection.cursor() as cursor:
+        cursor.executemany(sql, dt_bridge)
+
+def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str):
+    
+    dt_monthly_fee = pd.read_csv(path_monthlyfee)
+
+    person_id_map = _lookup_id(connection, 'dim_person', 'Full_Name', 'id_person')
+    dt_monthly_fee.rename({"Nome":"Full_Name"})
+
+
+    dt_res = pd.merge(dt_monthly_fee,
+                      person_id_map,
+                      how= 'inner',
+                      on="Nome")
+    print(dt_res)
+    ...
 
 if __name__ == "__main__":
 
@@ -213,7 +237,6 @@ if __name__ == "__main__":
         ldt = load_dim_time(connection, '2020-01-01', '2028-12-31')
 
         championship = get_unique_values("out/championship_team", "Nome_Campeonato")
-        print(championship)
         ldchap = load_dim_championship(connection, championship)
 
         categorys = get_unique_values("out/person_master", "Categoria")
@@ -223,23 +246,28 @@ if __name__ == "__main__":
         else:
             print("Nenhuma categoria na tabela")
 
-        team = get_unique_values("out/team_person", "Nome Time")
+        team = get_unique_values("out/team_person", "Nome_Time")
         ldteam = load_dim_team(connection, team)
         """
         ==================================================
-                FASE 2: LOAD DIM_PERSON
+                FASE 2: LOAD DIM_PERSON AND 
+                    BRIDGE_TEAM_MEMBER
         ==================================================
         """
       
         ldp = load_dim_person(connection, "out/person_master")
-        connection.commit()
         
         load_bridge_team_member(connection, "out/team_person", "out/championship_team")
+        connection.commit()
 
 
-        d = _load_generic_dimension(connection, "dim_championship",
-                                    ("name", "year"), (("cheerfest", "2016"), ("Arena", "2010")))
-        print(d)
+        """
+        ==================================================
+                FASE 3: LOAD FACTS
+        ==================================================
+        """
+        load_fact_monthly(connection, 'out/ControleMensalidade')
+
         
 
 

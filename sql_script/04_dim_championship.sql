@@ -1,5 +1,4 @@
 CREATE TABLE IF NOT EXISTS dim_championship(
     id_championship INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) UNIQUE NOT NULL,
-    year INT
+    name VARCHAR(50) UNIQUE NOT NULL
 );
