@@ -1,6 +1,20 @@
 import pandas as pd
 import numpy as np
 
+def _is_valid_year(value: str, min_year: int , max_year: int) -> bool:
+    try:
+        y = int(value)
+    except (TypeError, ValueError):
+        return False
+    return min_year <= y <= max_year
+
+def _ask_year(prompt: str, min_year : int = 2020, max_year: int = 2028) -> int:
+    while True:
+        val = input(prompt).strip()
+        if _is_valid_year(val, min_year, max_year):
+            return val
+        print(f"Ano inválido. Informe um inteiro entre {min_year} e {max_year}.")
+
 def _extract_sheets(caminho : str, sheets_detail : list):
     """
     Deve passar uma lista de dict com as seguintes info:
@@ -31,9 +45,10 @@ def _extract_sheets(caminho : str, sheets_detail : list):
     return dts
 
 
-def _melt_monthly_fee(dt_raw : pd.DataFrame, categoria : str):
-    meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 
-             "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+def _melt_monthly_fee(dt_raw : pd.DataFrame, categoria : str, year : str):
+
+    meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
+             "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ]
     
     dt = dt_raw.melt(
         id_vars="Nome",
@@ -43,24 +58,36 @@ def _melt_monthly_fee(dt_raw : pd.DataFrame, categoria : str):
         )
     dt["Categoria"] = categoria
 
+    month_to_date_map = {
+        mes.lower(): f"{str(i+1).zfill(2)}/{year}"
+        for i, mes in enumerate(meses)
+    }
+
+    dt["Mes"] = dt["Mes"].str.lower().map(month_to_date_map)
+
     return dt
 
 def _clean_monthly_payment(dt : pd.DataFrame):
     def separa_val(valor):
-        if isinstance(valor, (int, float)):
-            if valor > 0:
-                return valor, "pago"
-            elif valor == 0:
+        if isinstance(valor, (int, float)) and valor > 0:
+            return valor, "pago"
+        elif pd.isna(valor):
                 return 0, "nao pago"
+        elif str(valor).strip().lower() == '':
+            return 0, "nao pago"
+        elif valor == 0:
+            return 0, "nao pago"
         else:
-            if pd.isna(valor):
-                return np.nan, np.nan
-            return np.nan, str(valor).strip().lower()
+            return 0, str(valor).strip().lower()
 
     dt[["Valor", "Status"]] = dt["Pagamento"].apply(
     lambda x:pd.Series(separa_val(x)))
+    
     dt.drop(columns=["Pagamento"], inplace=True)
+
+    dt["Nome"] = dt["Nome"].str.strip().str.replace(r'\s+', ' ', regex=True)
     return dt
+
 
 def transform_monthly_fee_data(caminho_controle : str , caminho_out = ""):
 
@@ -78,8 +105,10 @@ def transform_monthly_fee_data(caminho_controle : str , caminho_out = ""):
     ]
     dt_atleta_raw , dt_associado_raw = _extract_sheets(caminho_controle, sheets)
 
-    dt_associado_long = _melt_monthly_fee(dt_associado_raw, "Associado")
-    dt_atleta_long = _melt_monthly_fee(dt_atleta_raw, "Atleta")
+
+    year = _ask_year("Whith year this monthly fee control is from?")
+    dt_associado_long = _melt_monthly_fee(dt_associado_raw, "Associado", year)
+    dt_atleta_long = _melt_monthly_fee(dt_atleta_raw, "Atleta", year)
 
     dt_atleta = _clean_monthly_payment(dt_atleta_long)
     dt_associado = _clean_monthly_payment(dt_associado_long)

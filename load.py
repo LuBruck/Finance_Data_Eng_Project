@@ -6,24 +6,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def insert_time_data(connection : pymysql.Connect, start_date:str, end_date:str):
     dates = pd.date_range(start=start_date, end=end_date)
     day = dates.day
     month = dates.month
     year = dates.year
     semester = ((dates.month - 1) // 6) + 1
-    id_dates = dates.strftime('%Y%m%d').astype(int)
     
     with connection.cursor() as cursor:
         sql = (
-            'INSERT IGNORE INTO dim_time(id_time, day, month, year, semester, date) '
+            'INSERT IGNORE INTO dim_time(day, month, year, semester, date) '
             'VALUES '
-            '(%(id_dates)s, %(day)s, %(month)s, %(year)s, %(semester)s, %(data)s)'
+            '(%(day)s, %(month)s, %(year)s, %(semester)s, %(data)s)'
         )
 
         data = [
             {
-                'id_dates': id_dates[i],
                 'day': day[i],
                 'month': month[i],
                 'year': year[i],
@@ -194,26 +193,43 @@ def load_bridge_team_member(connection: pymysql.Connect, path_team_person: str,
 
         
     sql = (
-        'INSERT INTO bridge_team_member (id_person, id_team, id_championship) '
+        'INSERT IGNORE INTO bridge_team_member (id_person, id_team, id_championship) '
         'VALUES (%(id_person)s, %(id_team)s, %(id_championship)s)'
     )
     with connection.cursor() as cursor:
         cursor.executemany(sql, dt_bridge)
 
-def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str):
+
+def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str, year : str):
     
     dt_monthly_fee = pd.read_csv(path_monthlyfee)
 
     person_id_map = _lookup_id(connection, 'dim_person', 'Full_Name', 'id_person')
-    dt_monthly_fee.rename({"Nome":"Full_Name"})
+    dt_monthly_fee["person_id"] = dt_monthly_fee["Nome"].map(person_id_map)
 
+    with connection.cursor() as cursor:
+            sql = (
+                "SELECT date , id_time FROM dim_time "
+                "WHERE day = 1 and year = %s "
+            )
 
-    dt_res = pd.merge(dt_monthly_fee,
-                      person_id_map,
-                      how= 'inner',
-                      on="Nome")
-    print(dt_res)
-    ...
+            cursor.execute(sql, year)
+            result = cursor.fetchall()
+
+    result = [{**a, 'date': a['date'].strftime('%m/%Y')} for a in result]
+    dates = {item['date'] : item['id_time'] for item in result}
+    dt_monthly_fee['id_time'] = dt_monthly_fee["Mes"].map(dates)
+# [["Valor", "Status", "person_id", "id_time"]]
+    dt_monthly_fee = dt_monthly_fee.to_dict('records')
+
+    sql = (
+        "INSERT IGNORE INTO fact_monthly_fee (value, status, id_person, id_time) "
+        "VALUES (%(Valor)s, %(Status)s, %(person_id)s, %(id_time)s) "
+    )
+
+    with connection.cursor() as cursor:
+        cursor.executemany(sql, dt_monthly_fee)
+
 
 if __name__ == "__main__":
 
@@ -248,7 +264,7 @@ if __name__ == "__main__":
 
         team = get_unique_values("out/team_person", "Nome_Time")
         ldteam = load_dim_team(connection, team)
-        """
+        """a
         ==================================================
                 FASE 2: LOAD DIM_PERSON AND 
                     BRIDGE_TEAM_MEMBER
@@ -258,7 +274,6 @@ if __name__ == "__main__":
         ldp = load_dim_person(connection, "out/person_master")
         
         load_bridge_team_member(connection, "out/team_person", "out/championship_team")
-        connection.commit()
 
 
         """
@@ -266,8 +281,13 @@ if __name__ == "__main__":
                 FASE 3: LOAD FACTS
         ==================================================
         """
-        load_fact_monthly(connection, 'out/ControleMensalidade')
 
+        # FAZER UMA FUNÇÃO PARA PEGAR O PRIMEIRO E ULTIMO ANO CADASTRADO NO BANCO DE DADOS
+        # year = _ask_year("Whith year this monthly fee control is from?")
+        year = "2025"
+        load_fact_monthly(connection, 'out/ControleMensalidade' , year)
+
+        connection.commit()
         
 
 
