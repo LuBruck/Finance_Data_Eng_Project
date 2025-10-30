@@ -155,7 +155,7 @@ def load_dim_person(connection: pymysql.Connect, path_cvs : str):
 
 def get_unique_values(path: str, column_name : str) -> tuple:
 
-    dt = pd.read_csv(path, usecols=[column_name])
+    dt = pd.read_csv(path, usecols=[column_name], dtype=str)
 
     unique_values = (
         dt[column_name]
@@ -202,7 +202,7 @@ def load_bridge_team_member(connection: pymysql.Connect, path_team_person: str,
 
 def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str, year : str):
     
-    dt_monthly_fee = pd.read_csv(path_monthlyfee)
+    dt_monthly_fee = pd.read_csv(path_monthlyfee, dtype=str)
 
     person_id_map = _lookup_id(connection, 'dim_person', 'Full_Name', 'id_person')
     dt_monthly_fee["person_id"] = dt_monthly_fee["Nome"].map(person_id_map)
@@ -230,6 +230,12 @@ def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str, year :
     with connection.cursor() as cursor:
         cursor.executemany(sql, dt_monthly_fee)
 
+def load_fact_individual_cash(connection: pymysql.Connect, path_individual_cash : str):
+
+    df_individual_cash = pd.read_csv(path_individual_cash, dtype=str)
+
+    id_person_map = _lookup_id(connection, "dim_person", "CPF" ,"id_person")
+    id_
 
 if __name__ == "__main__":
 

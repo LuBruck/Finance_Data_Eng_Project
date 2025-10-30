@@ -20,9 +20,9 @@ def _extract_sheets(caminho : str, sheets_detail : list):
     Deve passar uma lista de dict com as seguintes info:
     list = [
     {
-        sheet_name="sheet_name",
-        header = 1,
-        usecols = "B:N"
+        "sheet_name" : "sheet_name",
+        "header" : 1,
+        "usecols" : "B:N"
         },
     ]
     
@@ -106,7 +106,8 @@ def transform_monthly_fee_data(caminho_controle : str , caminho_out = ""):
     dt_atleta_raw , dt_associado_raw = _extract_sheets(caminho_controle, sheets)
 
 
-    year = _ask_year("Whith year this monthly fee control is from?")
+    # year = _ask_year("Whith year this monthly fee control is from?")
+    year = "2025"
     dt_associado_long = _melt_monthly_fee(dt_associado_raw, "Associado", year)
     dt_atleta_long = _melt_monthly_fee(dt_atleta_raw, "Atleta", year)
 
@@ -119,7 +120,13 @@ def transform_monthly_fee_data(caminho_controle : str , caminho_out = ""):
         dt_mensalidade_out.to_csv(path_or_buf=caminho_out)
     return dt_mensalidade_out
 
-def transform_person_master(path_in , path_out):
+def transform_person_master(path_in:str , path_out:str):
+
+    r"""
+    Parameters
+    ---
+    path_out : The path_out in this case is just the directory
+    """
 
     sheet = [
         {
@@ -188,6 +195,66 @@ def transform_person_master(path_in , path_out):
     return dt_person_master, dt_team_person
 
 
+def _melt_individual_data(df_raw : pd.DataFrame):
+
+    if 'Categoria De Pagamento' in df_raw.columns:
+        df_interval = df_raw.loc[:, 'Categoria De Pagamento':'Total Arrecadado'].drop(
+            columns=['Categoria De Pagamento', 'Total Arrecadado'])
+    else:
+        df_interval = df_raw.loc[:, 'Time':'Total'].drop(columns=['Time', 'Total'])
+
+    value_vars = df_interval.columns
+    df_melted = df_raw.melt(
+        id_vars=["Nome", "CPF"],
+        var_name="source",
+        value_name="value",
+        value_vars=value_vars
+    )
+
+    df_melted['date'] = df_melted["source"].str.split(' - ').str[-1]
+    df_melted['source'] = df_melted["source"].str.split(' - ').str[0]
+    df_melted['value'] = df_melted["value"].fillna(0)
+    df_melted = df_melted.dropna()
+
+    return df_melted
+
+def transform_individual_cash(path_in:str, path_out: str):
+
+
+    sheets = [
+        {
+            "sheet_name" : "Dados",
+            "header" : 1,
+        },
+        {
+            "sheet_name": "Pagamento Individual",
+            "header": 1,
+        },
+        ]
+    df_individual = _extract_sheets(path_in, sheets)
+
+    for df in df_individual:
+        df["Nome"] = df["Nome"].str.strip().str.replace(r'\s+', ' ', regex=True)
+        df["CPF"] = (
+                df["CPF"]
+                .str.replace('.', '', regex=False)
+                .str.replace('-', '', regex=False)
+                .str.strip()
+                .str.zfill(11)
+            )
+    
+    events_payment = _melt_individual_data(df_individual[0])
+
+    individual_payment = df_individual[1].loc[:, 'Nome':'Total Arrecadado']
+    individual_payment = _melt_individual_data(individual_payment)
+
+    df_individual = pd.concat([events_payment, individual_payment])
+
+    df_individual.to_csv(path_out)
+    return df_individual
+
+
+    
 if __name__ == "__main__":
     dt_mensalidade_out = transform_monthly_fee_data("data/ControleMensalidades.xlsx", "out/ControleMensalidade")
 
@@ -198,4 +265,6 @@ if __name__ == "__main__":
         "out/"
     )
 
+    transform_individual_cash("data/Caixa_Individual.xlsx", "out/individual_cash")
 
+    aaa = pd.DataFrame()
