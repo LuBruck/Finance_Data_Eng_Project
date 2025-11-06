@@ -18,7 +18,11 @@ O projeto é executado em duas etapas principais, utilizando um diretório out/ 
 
 #### Modelo de Dados (Snowflake Schema)
 
-![scheme](scheme.png)
+<center>
+
+![scheme](ER_diagram.jpeg)
+
+</center>
 
 #### Tecnologias Utilizadas
 
