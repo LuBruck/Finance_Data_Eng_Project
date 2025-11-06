@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import pymysql
 import os
+from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -111,17 +112,29 @@ def load_dim_team(connection : pymysql.Connect, team : tuple):
        data=team
    )
 
-def _lookup_id(conecction: pymysql.Connect, table_name , key, id_name):
+def _lookup_id(conecction: pymysql.Connect, table_name , key, id_name, where_in : list = False):
 
-    sql = f"SELECT {key}, {id_name} FROM {table_name}"
-    with conecction.cursor() as cursor:
-        cursor.execute(sql)
-        result = cursor.fetchall()
+    if where_in:
+        placeholders = ', '.join(['%s'] * len(where_in))
+        sql = (
+            f"SELECT {key}, {id_name} FROM {table_name} "
+            f"WHERE {key} in ({placeholders})"
+        )
+
+        with conecction.cursor() as cursor:
+            cursor.execute(sql, where_in)
+            result = cursor.fetchall()
+
+    else:
+        sql = f"SELECT {key}, {id_name} FROM {table_name}"
+        with conecction.cursor() as cursor:
+            cursor.execute(sql)
+            result = cursor.fetchall()
 
 
-        df_lookup = pd.DataFrame(result, columns=[key, id_name])
-        df_lookup[key] = df_lookup[key].astype(str)
-        return df_lookup.set_index(key)[id_name].to_dict()
+    df_lookup = pd.DataFrame(result, columns=[key, id_name])
+    df_lookup[key] = df_lookup[key].astype(str)
+    return df_lookup.set_index(key)[id_name].to_dict()
 
 def load_dim_person(connection: pymysql.Connect, path_cvs : str):
     df = pd.read_csv(path_cvs, dtype=str)
@@ -223,7 +236,7 @@ def load_fact_monthly(connection: pymysql.Connect, path_monthlyfee : str, year :
     dt_monthly_fee = dt_monthly_fee.to_dict('records')
 
     sql = (
-        "INSERT IGNORE INTO fact_monthly_fee (value, status, id_person, id_time) "
+        "INSERT IGNORE INTO fact_monthly_fee (amount, status, id_person, id_time) "
         "VALUES (%(Valor)s, %(Status)s, %(person_id)s, %(id_time)s) "
     )
 
@@ -235,7 +248,29 @@ def load_fact_individual_cash(connection: pymysql.Connect, path_individual_cash 
     df_individual_cash = pd.read_csv(path_individual_cash, dtype=str)
 
     id_person_map = _lookup_id(connection, "dim_person", "CPF" ,"id_person")
-    id_
+    
+    df_individual_cash['date'] = pd.to_datetime(df_individual_cash['date'], format='%d/%m/%Y', errors='coerce')
+    dates = df_individual_cash['date'].dropna().drop_duplicates().to_list()
+    df_individual_cash['date'] = df_individual_cash['date'].astype(str)
+
+    id_time_map = _lookup_id(
+        connection,
+        "dim_time",
+        "date",
+        "id_time",
+        dates
+        )
+    
+    df_individual_cash['id_person'] = df_individual_cash['CPF'].map(id_person_map)
+    df_individual_cash['id_time'] = df_individual_cash['date'].map(id_time_map)
+    
+    df_individual_cash = df_individual_cash.to_dict('records')
+    with connection.cursor() as cursor:
+        sql = (
+            "INSERT IGNORE INTO fact_individual_cash (value, source, id_person, id_time) "
+            "VALUES (%(value)s, %(source)s, %(id_person)s, %(id_time)s) "
+        )
+        cursor.executemany(sql, df_individual_cash)
 
 if __name__ == "__main__":
 
@@ -293,7 +328,8 @@ if __name__ == "__main__":
         year = "2025"
         load_fact_monthly(connection, 'out/ControleMensalidade' , year)
 
-        connection.commit()
         
+        load_fact_individual_cash(connection, "out/individual_cash")
 
+        connection.commit()
 

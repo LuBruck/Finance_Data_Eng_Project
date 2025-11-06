@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS fact_monthly_fee (
-    id_monthly_fee INT PRIMARY KEY AUTO_INCREMENT,
-    value FLOAT, 
+    id_monthly_fee INT AUTO_INCREMENT PRIMARY KEY ,
+    amount FLOAT, 
     status VARCHAR(100),
     obs VARCHAR(100),
     id_person INT, 

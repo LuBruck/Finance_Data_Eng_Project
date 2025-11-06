@@ -249,6 +249,7 @@ def transform_individual_cash(path_in:str, path_out: str):
     individual_payment = _melt_individual_data(individual_payment)
 
     df_individual = pd.concat([events_payment, individual_payment])
+    df_individual['date'] = df_individual['date'].str.strip()
 
     df_individual.to_csv(path_out)
     return df_individual
@@ -266,5 +267,3 @@ if __name__ == "__main__":
     )
 
     transform_individual_cash("data/Caixa_Individual.xlsx", "out/individual_cash")
-
-    aaa = pd.DataFrame()
