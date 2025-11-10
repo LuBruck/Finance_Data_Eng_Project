@@ -42,7 +42,7 @@ Instalação de dependências
 ---
 1.Clonar o Repositorio
 ```bash
-git clone https://github.com/LuBruck/Finance_Data_Eng_Project/tree/main
+git clone https://github.com/LuBruck/Finance_Data_Eng_Project
 ```
 2. Criar venv e ativar:
 ```bash
